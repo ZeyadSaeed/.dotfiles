@@ -18,8 +18,9 @@ element-text, element-icon , mode-switcher {
 
 window {
     height: 360px;
-    border: 3px;
-    border-color: @border-col;
+    border: 1px;
+    border-radius: 5px;
+    border-color: @grey;
     background-color: @bg-col;
 }
 
@@ -30,16 +31,16 @@ mainbox {
 inputbar {
     children: [prompt,entry];
     background-color: @bg-col;
-    border-radius: 5px;
     padding: 2px;
+    border: 0px 0px 1px;
+    border-color: @grey;
 }
 
 prompt {
     background-color: @blue;
-    padding: 6px;
+    padding: 8px 6px 6px;
     text-color: @bg-col;
     border-radius: 3px;
-    margin: 6px 0px 0px 6px;
 }
 
 textbox-prompt-colon {
@@ -48,8 +49,7 @@ textbox-prompt-colon {
 }
 
 entry {
-    padding: 6px;
-    margin: 6px 0px 0px 6px;
+    padding: 8px;
     text-color: @fg-col;
     background-color: @bg-col;
 }
@@ -66,7 +66,7 @@ listview {
 element {
     padding: 5px;
     background-color: @bg-col;
-    text-color: @fg-col  ;
+    text-color: @fg-col;
 }
 
 element-icon {
@@ -74,13 +74,13 @@ element-icon {
 }
 
 element selected {
-    background-color:  @selected-col ;
-    text-color: @fg-col2  ;
+    background-color:  @selected-col;
+    text-color: @fg-col2;
 }
 
 mode-switcher {
     spacing: 0;
-  }
+}
 
 button {
     padding: 10px;
