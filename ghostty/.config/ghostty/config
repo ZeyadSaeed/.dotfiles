@@ -1,0 +1,4 @@
+font-family = "JetBrainsMono NF"
+font-size = 13
+theme = "NightOwlDark"
+gtk-titlebar = false
