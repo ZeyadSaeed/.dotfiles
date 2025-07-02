@@ -36,9 +36,6 @@ vim.g['prettier#config#config_precedence'] = 'file-override'
 
 set("n", "Q", "<nop>")
 set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
-set("n", "<leader>f", function()
-  vim.lsp.buf.format()
-end)
 
 set("n", "<leader>s", [[:%s/\<<c-r><c-w>\>/<c-r><c-w>/gi<left><left><left>]])
 
