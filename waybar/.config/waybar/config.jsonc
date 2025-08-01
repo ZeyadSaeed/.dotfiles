@@ -6,6 +6,7 @@
     ],
   "modules-center": ["clock"],
   "modules-right": [
+    "custom/discord-volume",
     "pulseaudio",
     "battery",
     "network",
@@ -54,6 +55,16 @@
       "default": ["", "", " "]
     },
     "on-click": "pavucontrol"
+  },
+  "custom/discord-volume": {
+      "format": "{text}",
+      "exec": "~/.config/waybar/scripts/discord-volume.sh",
+      "return-type": "json",
+      "interval": 5,
+      "on-click": "~/.config/hypr/scripts/mute_dis.sh",
+      "on-scroll-up": "~/.config/hypr/scripts/inc_vol_dis.sh",
+      "on-scroll-down": "~/.config/hypr/scripts/dec_vol_dis.sh",
+      "tooltip": false
   },
   "custom/lock": {
     "tooltip": false,

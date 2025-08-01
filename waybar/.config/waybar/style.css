@@ -41,6 +41,7 @@
 #clock,
 #battery,
 #pulseaudio,
+#custom-discord-volume,
 #network,
 #cpu,
 #memory,
@@ -71,7 +72,7 @@
   border-radius: 0;
 }
 
-#pulseaudio {
+#pulseaudio, #custom-discord-volume {
   color: #ea999c;
   border-radius: 5px 0px 0px 5%;
   margin-left: 1rem;
