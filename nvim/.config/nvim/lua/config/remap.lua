@@ -3,7 +3,6 @@ local set = vim.keymap.set
 vim.g.mapleader = " "
 set("n", "<leader>pv", vim.cmd.Ex)
 set("n", "<leader>spv", vim.cmd.Vex)
-set("n", "<C-i>", "<C-a>")
 
 set("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Execute the current file" })
 
@@ -32,6 +31,8 @@ set("v", "<leader>d", "\"_d")
 
 set("i", "<C-c>", "<Esc>")
 
+vim.g.ftplugin_sql_omni_key = '<C-j>'
+
 vim.g['prettier#config#config_precedence'] = 'file-override'
 
 set("n", "Q", "<nop>")
@@ -51,3 +52,10 @@ end)
 
 set("n", "-", "<cmd>Oil<CR>")
 set("t", "<esc><esc>", "<c-\\><c-n>")
+
+set('n', '<leader>1', '1gt')
+set('n', '<leader>2', '2gt')
+set('n', '<leader>3', '3gt')
+set('n', '<leader>4', '4gt')
+set('n', '<leader>5', '5gt')
+set('n', '<leader>6', '6gt')

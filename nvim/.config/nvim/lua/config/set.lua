@@ -1,31 +1,32 @@
 -- Highlight when yanking
-vim.api.nvim_create_autocmd('TextYankPost', {
+vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight when yanking text",
-  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+  group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
   callback = function()
     vim.highlight.on_yank({
-      higroup = 'Search', -- or any other highlight group you prefer
+      higroup = "Search", -- or any other highlight group you prefer
     })
-  end
+  end,
 })
 
 -- Terimal settings
-vim.api.nvim_create_autocmd('TermOpen', {
-  group = vim.api.nvim_create_augroup('custom-term-open', { clear = true }),
+vim.api.nvim_create_autocmd("TermOpen", {
+  group = vim.api.nvim_create_augroup("custom-term-open", { clear = true }),
   callback = function()
     vim.opt.number = false
     vim.opt.relativenumber = false
-  end
+  end,
 })
 
 vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.opt.clipboard = "unnamedplus"
 
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
+vim.opt.autoindent = true -- copy indent from current line when starting new one
 
 vim.opt.smartindent = true
 
@@ -46,3 +47,8 @@ vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
+
+vim.opt.backspace = "indent,eol,start"
+
+vim.opt.splitright = true
+vim.opt.splitbelow = true

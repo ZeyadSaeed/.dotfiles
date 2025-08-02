@@ -1,13 +1,43 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      "windwp/nvim-ts-autotag",
+    },
     build = ":TSUpdate",
     config = function()
-      require 'nvim-treesitter.configs'.setup {
-        ensure_installed = { "c", "javascript", "typescript", "tsx", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline" },
+      require("nvim-treesitter.configs").setup({
+        ensure_installed = {
+          "go",
+          "gotmpl",
+          "helm",
+          "sql",
+          "json",
+          "javascript",
+          "typescript",
+          "tsx",
+          "yaml",
+          "html",
+          "css",
+          "markdown",
+          "markdown_inline",
+          "bash",
+          "lua",
+          "vim",
+          "dockerfile",
+          "gitignore",
+          "query",
+          "vimdoc",
+          "c",
+        },
         auto_install = true,
         sync_install = false,
         ignore_install = {},
+        modules = {},
+        indent = { enable = true },
+        incremental_selection = { enable = true },
+        autotag = { enable = true },
         highlight = {
           enable = true,
           disable = function(_, buf)
@@ -18,7 +48,25 @@ return {
             end
           end,
         },
-      }
-    end
-  }
+      })
+
+      vim.filetype.add({
+        extension = {
+          tmpl = "gotmpl",
+        },
+        pattern = {
+          [".*/templates/.*%.tpl"] = "helm",
+          [".*/templates/.*%.ya?ml"] = "helm",
+          ["helmfile.*%.ya?ml"] = "helm",
+        },
+      })
+
+      vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+        pattern = "Caddyfile",
+        callback = function()
+          vim.bo.filetype = "caddy"
+        end,
+      })
+    end,
+  },
 }

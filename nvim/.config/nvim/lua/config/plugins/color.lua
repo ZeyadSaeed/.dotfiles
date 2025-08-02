@@ -5,6 +5,6 @@ return {
     config = function()
       require("night-owl").setup()
       vim.cmd.colorscheme("night-owl")
-    end
-  }
+    end,
+  },
 }
