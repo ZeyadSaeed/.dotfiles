@@ -18,20 +18,23 @@ return {
           "eslint",
           "gopls",
           "bashls",
+          "terraformls",
         },
       })
 
       require("mason-tool-installer").setup({
         ensure_installed = {
-          --  "prettier", -- prettier formatter
           "stylua", -- lua formatter
           "eslint_d",
           "goimports",
-          "codespell",
           "prettier",
           "golangci-lint",
           "shellcheck",
           "shfmt",
+          "hadolint",
+          "cfn-lint",
+          "tflint",
+          "tfsec",
         },
       })
     end,

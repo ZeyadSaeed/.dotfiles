@@ -4,6 +4,8 @@ vim.g.mapleader = " "
 set("n", "<leader>pv", vim.cmd.Ex)
 set("n", "<leader>spv", vim.cmd.Vex)
 
+set("n", "<C-i>", "<C-a>")
+
 set("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Execute the current file" })
 
 set("v", "J", ":m '>+1<CR>gv=gv")
@@ -18,22 +20,25 @@ set("n", "N", "Nzzzv")
 set("n", "<leader>o", "o<Esc>")
 set("n", "<leader>O", "O<Esc>")
 
-set("x", "<leader>vp", "\"_dP")
--- set("n", "<leader>pc", "\"+p")
--- set("v", "<leader>pc", "\"+p")
---
--- set("n", "<leader>y", "\"+y")
--- set("v", "<leader>y", "\"+y")
--- set("n", "<leader>Y", "\"+Y")
+-- Void paste
+set("x", "<leader>pv", '"_dP')
+-- Paste from the main clipboard
+set("n", "<leader>pp", '"+p')
+set("v", "<leader>pp", '"+p')
 
-set("n", "<leader>d", "\"_d")
-set("v", "<leader>d", "\"_d")
+set("n", "<leader>y", '"+y')
+set("v", "<leader>y", '"+y')
+set("n", "<leader>Y", '"+Y')
+
+-- Void delete (Don't save to the clipboard)
+set("n", "<leader>d", '"_d')
+set("v", "<leader>d", '"_d')
 
 set("i", "<C-c>", "<Esc>")
 
-vim.g.ftplugin_sql_omni_key = '<C-j>'
+vim.g.ftplugin_sql_omni_key = "<C-j>"
 
-vim.g['prettier#config#config_precedence'] = 'file-override'
+vim.g["prettier#config#config_precedence"] = "file-override"
 
 set("n", "Q", "<nop>")
 set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
@@ -53,9 +58,9 @@ end)
 set("n", "-", "<cmd>Oil<CR>")
 set("t", "<esc><esc>", "<c-\\><c-n>")
 
-set('n', '<leader>1', '1gt')
-set('n', '<leader>2', '2gt')
-set('n', '<leader>3', '3gt')
-set('n', '<leader>4', '4gt')
-set('n', '<leader>5', '5gt')
-set('n', '<leader>6', '6gt')
+set("n", "<leader>1", "1gt")
+set("n", "<leader>2", "2gt")
+set("n", "<leader>3", "3gt")
+set("n", "<leader>4", "4gt")
+set("n", "<leader>5", "5gt")
+set("n", "<leader>6", "6gt")

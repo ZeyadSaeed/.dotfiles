@@ -20,11 +20,10 @@ vim.api.nvim_create_autocmd("TermOpen", {
 
 vim.opt.nu = true
 vim.opt.relativenumber = true
-vim.opt.clipboard = "unnamedplus"
 
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.autoindent = true -- copy indent from current line when starting new one
 
@@ -52,3 +51,13 @@ vim.opt.backspace = "indent,eol,start"
 
 vim.opt.splitright = true
 vim.opt.splitbelow = true
+
+-- Disable diagnostics fro env files
+local group = vim.api.nvim_create_augroup("__env", { clear = true })
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = "*.env*",
+  group = group,
+  callback = function()
+    vim.diagnostic.enable(false)
+  end,
+})

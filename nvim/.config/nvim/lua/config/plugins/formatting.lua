@@ -15,17 +15,25 @@ return {
         html = { "prettier" },
         json = { "prettier" },
         yaml = { "prettier" },
+        cloudformation = { "prettier" },
+        yml = { "prettier" },
         markdown = { "prettier" },
         gotmpl = { "prettier_go_template" },
         lua = { "stylua" },
         ["*"] = { "codespell" },
         sh = { "shfmt" },
+        hcl = { "packer_fmt" },
+        terraform = { "terraform_fmt" },
+        -- tf = { "terraform_fmt" },
+        -- ["terraform-vars"] = { "terraform_fmt" },
+        -- yml = { "yamlls" },
+        -- yaml = { "yamlls" },
       },
-      format_on_save = {
-        lsp_fallback = true,
-        async = false,
-        timeout_ms = 3000,
-      },
+      -- format_on_save = {
+      --   lsp_fallback = true,
+      --   async = false,
+      --   timeout_ms = 3000,
+      -- },
 
       formatters = {
         prettier_go_template = {

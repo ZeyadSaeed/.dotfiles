@@ -7,6 +7,7 @@ return {
     },
     build = ":TSUpdate",
     config = function()
+      vim.treesitter.language.register("yaml", "cloudformation")
       require("nvim-treesitter.configs").setup({
         ensure_installed = {
           "go",
@@ -30,6 +31,8 @@ return {
           "query",
           "vimdoc",
           "c",
+          "terraform",
+          "hcl",
         },
         auto_install = true,
         sync_install = false,
