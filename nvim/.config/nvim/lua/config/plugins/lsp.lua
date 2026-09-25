@@ -8,7 +8,12 @@ return {
     config = function()
       require("mason").setup({})
       require("mason-lspconfig").setup({
+        automatic_enable = true,
+      })
+
+      require("mason-tool-installer").setup({
         ensure_installed = {
+          -- Lsp servers
           "ts_ls",
           "html",
           "cssls",
@@ -19,11 +24,8 @@ return {
           "gopls",
           "bashls",
           "terraformls",
-        },
-      })
 
-      require("mason-tool-installer").setup({
-        ensure_installed = {
+          -- Formatters and linters
           "stylua", -- lua formatter
           "eslint_d",
           "goimports",
@@ -44,8 +46,6 @@ return {
     ft = "lua", -- only load on lua files
     opts = {
       library = {
-        -- See the configuration section for more details
-        -- Load luvit types when the `vim.uv` word is found
         { path = "${3rd}/luv/library", words = { "vim%.uv" } },
       },
     },
@@ -54,15 +54,48 @@ return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-      "hrsh7th/cmp-nvim-lsp",
+      "saghen/blink.cmp",
       { "antosha417/nvim-lsp-file-operations", config = true },
     },
     config = function()
-      local cmp_nvim_lsp = require("cmp_nvim_lsp")
+      local capabilities = require("blink.cmp").get_lsp_capabilities()
+
+      vim.diagnostic.config({
+        virtual_text = true,
+        signs = {
+          text = {
+            [vim.diagnostic.severity.ERROR] = " ",
+            [vim.diagnostic.severity.WARN] = " ",
+            [vim.diagnostic.severity.HINT] = "󰠠 ",
+            [vim.diagnostic.severity.INFO] = " ",
+          },
+        },
+      })
+
+      -- Apply capabilities to all servers via the new vim.lsp.config API
+      vim.lsp.config("*", { capabilities = capabilities })
+
+      vim.lsp.config("emmet_ls", {
+        filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
+      })
+
+      vim.lsp.config("eslint", {
+        filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
+      })
+
+      vim.lsp.config("ts_ls", {
+        settings = {
+          javascript = {
+            suggest = { completeFunctionCalls = false },
+          },
+          typescript = {
+            suggest = { completeFunctionCalls = false },
+          },
+        },
+      })
 
       vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(args)
-          -- LSP Remaps
           local opts = { buffer = args.buf, remap = false, silent = true }
 
           vim.keymap.set("n", "gd", function()
@@ -92,33 +125,6 @@ return {
           vim.keymap.set("i", "<C-h>", function()
             vim.lsp.buf.signature_help()
           end, opts)
-
-          -- used to enable autocompletion (assign to every lsp server config)
-          local capabilities = cmp_nvim_lsp.default_capabilities()
-
-          vim.diagnostic.config({
-            virtual_text = true,
-            signs = {
-              text = {
-                [vim.diagnostic.severity.ERROR] = " ",
-                [vim.diagnostic.severity.WARN] = " ",
-                [vim.diagnostic.severity.HINT] = "󰠠 ",
-                [vim.diagnostic.severity.INFO] = " ",
-              },
-            },
-          })
-
-          vim.lsp.config("*", {
-            capabilities = capabilities,
-          })
-
-          vim.lsp.config("emmet_ls", {
-            filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
-          })
-
-          vim.lsp.config("eslint", {
-            filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
-          })
         end,
       })
     end,

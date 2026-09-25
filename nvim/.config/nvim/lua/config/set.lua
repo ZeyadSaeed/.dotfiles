@@ -52,12 +52,12 @@ vim.opt.backspace = "indent,eol,start"
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
--- Disable diagnostics fro env files
+-- Disable diagnostics for env files
 local group = vim.api.nvim_create_augroup("__env", { clear = true })
 vim.api.nvim_create_autocmd("BufEnter", {
   pattern = "*.env*",
   group = group,
-  callback = function()
-    vim.diagnostic.enable(false)
+  callback = function(args)
+    vim.diagnostic.enable(false, { bufnr = args.buf })
   end,
 })

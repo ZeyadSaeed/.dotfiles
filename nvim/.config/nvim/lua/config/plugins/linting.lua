@@ -10,26 +10,35 @@ return {
       yml = { "yamllint" },
       yaml = { "yamllint" },
       json = { "eslint_d" },
+      tsx = { "eslint_d" },
+      ts = { "eslint_d" },
       cloudformation = { "cfn_lint" },
       dockerfile = { "hadolint" },
-      -- tf = { "terraform_validate", "tflint", "tfsec" },
+      tf = { "terraform_validate", "tflint", "tfsec" },
     }
 
     -- Optional: Enhanced CloudFormation detection based on content
-    vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-      pattern = "*.{yml,yaml,json}",
+    -- vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+    --   pattern = "*.{yml,yaml,json}",
+    --   callback = function()
+    --     local lines = vim.api.nvim_buf_get_lines(0, 0, 50, false) -- Check first 50 lines
+    --     for _, line in ipairs(lines) do
+    --       if
+    --         line:match("AWSTemplateFormatVersion")
+    --         or line:match("Transform.*AWS::Serverless")
+    --         or line:match("Resources:") and vim.fn.search("Type:.*AWS::", "n") > 0
+    --       then
+    --         vim.bo.filetype = "cloudformation"
+    --         break
+    --       end
+    --     end
+    --   end,
+    -- })
+
+    vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+      pattern = { "*.tf", "*.tfvars" },
       callback = function()
-        local lines = vim.api.nvim_buf_get_lines(0, 0, 50, false) -- Check first 50 lines
-        for _, line in ipairs(lines) do
-          if
-            line:match("AWSTemplateFormatVersion")
-            or line:match("Transform.*AWS::Serverless")
-            or line:match("Resources:") and vim.fn.search("Type:.*AWS::", "n") > 0
-          then
-            vim.bo.filetype = "cloudformation"
-            break
-          end
-        end
+        vim.bo.filetype = "terraform"
       end,
     })
 

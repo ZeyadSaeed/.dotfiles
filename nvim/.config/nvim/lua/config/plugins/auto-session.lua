@@ -6,7 +6,7 @@ return {
       auto_session_suppress_dirs = { "~/", "~/Downloads", "~/Documents", "~/Desktop/" },
     })
 
-    vim.keymap.set("n", "<leader>wss", "<cmd>SessionSearch<CR>", { desc = "Search for session" })
+    vim.keymap.set("n", "<leader>wss", "<cmd>AutoSession search<CR>", { desc = "Search for session" })
     vim.keymap.set("n", "<leader>wr", "<cmd>SessionRestore<CR>", { desc = "Restore session for cwd" })
     vim.keymap.set("n", "<leader>ws", "<cmd>SessionSave<CR>", { desc = "Save session for auto session root dir" })
   end,

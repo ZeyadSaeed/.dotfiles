@@ -1,0 +1,40 @@
+{
+  "createFunction": {
+    "prefix": "cf",
+    "body": [
+      "func ${1:}() {",
+      "}"
+    ]
+  },
+  "createServiceMethod": {
+    "prefix": "csvm",
+    "body" :[
+      "func (s *service) ${1:}(ctx context.Context) {",
+      " ",
+      "}"
+    ]
+  }, 
+  "createStoreMethod": {
+    "prefix": "cstm",
+    "body" :[
+      "func (s *store) ${1:}(ctx context.Context) {",
+      " ",
+      "}"
+    ]
+  },
+  "createHandlerMethod": {
+    "prefix": "chm",
+    "body" :[
+      "func (h *handler) ${1:}(w http.ResponseWriter, r *http.Request) {",
+      " ",
+      "}"
+    ]
+  },
+  "createMethod": {
+    "prefix": "cm",
+    "body": [
+      "func (${1:}) ${2:}() {",
+      "}"
+    ]
+  }
+}
