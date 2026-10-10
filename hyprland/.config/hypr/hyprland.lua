@@ -258,6 +258,9 @@ hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("cliphist list | rofi -dmenu | cliphi
 
 hl.bind(mainMod .. " + C", hl.dsp.exec_cmd("rofi -show calc -modi calc -no-show-match -no-sort"))
 
+-- Switch keyboard layout (Fn + Right Shift is remapped to F13 on the Wooting)
+hl.bind("F24", hl.dsp.exec_cmd("hyprctl switchxkblayout all next"))
+
 -- Special workspace (scratchpad)
 hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
