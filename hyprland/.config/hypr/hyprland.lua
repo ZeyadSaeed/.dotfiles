@@ -279,6 +279,7 @@ hl.bind(mainMod .. " + SHIFT + K", hl.dsp.window.move({ direction = "up" }))
 -- Screenshots
 -- hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot -m window -m active"))
 hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot -m region --clipboard-only"))
+hl.bind("SHIFT + PRINT", hl.dsp.exec_cmd("hyprshot -m region"))
 
 -- Laptop multimedia keys for volume and LCD brightness
 hl.bind(
