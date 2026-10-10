@@ -12,6 +12,7 @@
     "bluetooth",
     "group/system",
     "custom/agents",
+    "custom/language",
     "custom/power"
   ],
   "hyprland/workspaces": {
@@ -32,6 +33,11 @@
     "interval": 1,
     "on-click": "qs ipc call menu close",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+  },
+  "custom/language": {
+    "exec": "~/.config/waybar/scripts/language.sh",
+    "tooltip": false,
+    "on-click": "hyprctl switchxkblayout all next; qs ipc call menu close"
   },
   "custom/wifi": {
     "format": "{text}",
