@@ -8,11 +8,11 @@
   "modules-right": [
     "custom/discord-volume",
     "pulseaudio",
-    "battery",
-    "network",
-    "cpu",
-    "memory",
-    "custom/lock"
+    "custom/wifi",
+    "bluetooth",
+    "group/system",
+    "custom/agents",
+    "custom/power"
   ],
   "hyprland/workspaces": {
     "format": "{name}: {icon}",
@@ -30,50 +30,79 @@
     // "format": "{:%m:%d - %H:%M}"
     "format": "{:%B %d | %I:%M:%S %p}",
     "interval": 1,
+    "on-click": "qs ipc call menu close",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
   },
-  "network": {
-    "format-wifi": "󰤢 ",
-    "format-ethernet": "󰈀 ",
-    "format-disconnected": "󰤠 ",
-    "interval": 5,
-    "tooltip": false
+  "custom/wifi": {
+    "format": "{text}",
+    "exec": "~/.config/waybar/scripts/wifi-status.sh",
+    "return-type": "json",
+    "interval": 3,
+    "on-click": "~/.config/waybar/scripts/qs-menu.sh wifi"
+  },
+  "bluetooth": {
+    "format": "󰂯",
+    "format-off": "󰂲",
+    "format-disabled": "󰂲",
+    "format-connected": "󰂱",
+    "format-connected-battery": "󰂱",
+    "tooltip-format": "Bluetooth: {status}",
+    "tooltip-format-connected": "{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}  {device_battery_percentage}%",
+    "on-click": "~/.config/waybar/scripts/qs-menu.sh bluetooth"
+  },
+  "group/system": {
+    "orientation": "horizontal",
+    "modules": ["cpu", "memory"]
   },
   "cpu": {
-    "interval": 1,
-    "format": "  {icon0}{icon1}{icon2}{icon3} {usage:>2}%",
-    "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
+    "interval": 2,
+    "format": "󰻠 {usage}%",
+    "states": { "warning": 70, "critical": 90 },
+    "tooltip-format": "CPU {usage}%  ·  load {load}",
+    "on-click": "qs ipc call menu close; ghostty -e htop"
   },
   "memory": {
-    "interval": 30,
-    "format": "  {used:0.1f}G/{total:0.1f}G"
+    "interval": 10,
+    "format": " {percentage}%",
+    "states": { "warning": 75, "critical": 90 },
+    "tooltip-format": "RAM  {used:0.1f}G / {total:0.1f}G\nSwap {swapUsed:0.1f}G / {swapTotal:0.1f}G",
+    "on-click": "qs ipc call menu close; ghostty -e htop"
   },
   "pulseaudio": {
+    "scroll-step": 5,
     "format": "{icon} {volume}%",
-    "format-muted": "",
+    "format-muted": "󰝟 {volume}%",
     "format-icons": {
-      "default": ["", "", " "]
+      "default": ["󰕿", "󰖀", "󰕾"]
     },
-    "on-click": "pavucontrol"
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; qs ipc call menu close"
   },
   "custom/discord-volume": {
       "format": "{text}",
       "exec": "~/.config/waybar/scripts/discord-volume.sh",
       "return-type": "json",
       "interval": 5,
-      "on-click": "~/.config/hypr/scripts/mute_dis.sh",
+      "on-click": "~/.config/hypr/scripts/mute_dis.sh; qs ipc call menu close",
       "on-scroll-up": "~/.config/hypr/scripts/inc_vol_dis.sh",
       "on-scroll-down": "~/.config/hypr/scripts/dec_vol_dis.sh",
       "tooltip": false
   },
-  "custom/lock": {
+  "custom/agents": {
+    "format": "{text}",
+    "exec": "~/.config/waybar/scripts/agents-status.sh",
+    "return-type": "json",
+    "interval": 300,
+    "on-click": "~/.config/waybar/scripts/qs-menu.sh agents"
+  },
+  "custom/power": {
+    "format": "󰐥",
     "tooltip": false,
-    "on-click": "sh -c '(sleep 0.5s; hyprlock)' & disown",
-    "format": ""
+    "on-click": "~/.config/waybar/scripts/qs-menu.sh power"
   },
     "later": {
         "format": "<span class='icon'>{icon}</span> <span class='text'>{text}</span>"
     }
 
 }
-

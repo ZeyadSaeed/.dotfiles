@@ -42,19 +42,15 @@
 #battery,
 #pulseaudio,
 #custom-discord-volume,
-#network,
-#cpu,
-#memory,
-#custom-lock,
+#custom-wifi,
+#bluetooth,
+#system,
+#custom-agents,
 #custom-power {
   background-color: #101010;
   padding: 0.5rem 1rem;
   margin: 5px 0;
-  border-radius: 0px 5px 5px 0px;
-}
-
-#memory {
-  border-radius: 0px 5px 5px 0px;
+  border-radius: 5px;
 }
 
 #clock {
@@ -72,10 +68,66 @@
   border-radius: 0;
 }
 
-#pulseaudio, #custom-discord-volume {
+#pulseaudio,
+#custom-discord-volume {
   color: #ea999c;
-  border-radius: 5px 0px 0px 5%;
-  margin-left: 1rem;
+  margin-left: 0.5rem;
+}
+
+#pulseaudio.muted {
+  color: #737994;
+}
+
+#system {
+  margin-left: 0.5rem;
+  padding: 0 0.4rem;
+}
+
+#custom-wifi,
+#bluetooth {
+  margin-left: 0.5rem;
+  color: #8caaee;
+}
+
+#custom-wifi.off,
+#custom-wifi.disconnected,
+#bluetooth.off,
+#bluetooth.disabled {
+  color: #51576d;
+}
+
+#bluetooth.connected {
+  color: #99d1db;
+}
+
+/* cpu + ram share one pill, colored by load */
+#cpu,
+#memory {
+  padding: 0 0.6rem;
+  color: #a6d189;
+}
+
+#cpu.warning,
+#memory.warning {
+  color: #e5c890;
+}
+
+#cpu.critical,
+#memory.critical {
+  color: #e78284;
+}
+
+#custom-agents {
+  margin-left: 0.5rem;
+  color: #ca9ee6;
+}
+
+#custom-agents.warning {
+  color: #e5c890;
+}
+
+#custom-agents.critical {
+  color: #e78284;
 }
 
 #custom-music {
@@ -83,15 +135,9 @@
   border-radius: 5px;
 }
 
-#custom-lock {
-  border-radius: 5px 0px 0px 5px;
-  margin-left: 5px;
-  color: #babbf1;
-}
-
 #custom-power {
+  margin-left: 0.5rem;
   margin-right: 1rem;
-  border-radius: 0px 5px 5px 0px;
   color: #e78284;
 }
 

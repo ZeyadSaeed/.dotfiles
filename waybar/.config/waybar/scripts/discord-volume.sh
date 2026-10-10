@@ -5,7 +5,7 @@ DISCORD_ID=$(pactl list sink-inputs | grep -B 26 "Discord" | grep "Sink Input" |
 DISCORD_SINK=$(pactl list sink-inputs | grep -A 15 "Sink Input #$DISCORD_ID")
 
 if [ -z "$DISCORD_ID" ]; then
-    echo "{\"text\":\"N/A\"}"
+    echo "{\"text\":\"\"}"
     exit 0
 fi
 
