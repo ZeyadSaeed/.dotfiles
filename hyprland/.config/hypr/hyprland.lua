@@ -196,7 +196,7 @@ hl.config({
 		kb_layout = "us,ara",
 		kb_variant = "",
 		kb_model = "",
-		kb_options = "grp:win_space_toggle",
+		kb_options = "",
 		kb_rules = "",
 
 		accel_profile = "flat",
@@ -259,7 +259,10 @@ hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("cliphist list | rofi -dmenu | cliphi
 hl.bind(mainMod .. " + C", hl.dsp.exec_cmd("rofi -show calc -modi calc -no-show-match -no-sort"))
 
 -- Switch keyboard layout (Fn + Right Shift is remapped to F24 on the Wooting)
-hl.bind("F24", hl.dsp.exec_cmd("hyprctl switchxkblayout all next"))
+-- Set every device to the main keyboard's next layout; "all next" flips each device on its own and they drift apart
+local switch_layout = hl.dsp.exec_cmd("hyprctl switchxkblayout all $((1 - $(hyprctl devices -j | jq '.keyboards[] | select(.main).active_layout_index')))")
+hl.bind("F24", switch_layout)
+hl.bind("SUPER + Space", switch_layout)
 
 -- Special workspace (scratchpad)
 hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))

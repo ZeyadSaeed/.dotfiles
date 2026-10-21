@@ -37,7 +37,7 @@
   "custom/language": {
     "exec": "~/.config/waybar/scripts/language.sh",
     "tooltip": false,
-    "on-click": "hyprctl switchxkblayout all next; qs ipc call menu close"
+    "on-click": "hyprctl switchxkblayout all $((1 - $(hyprctl devices -j | jq '.keyboards[] | select(.main).active_layout_index'))); qs ipc call menu close"
   },
   "custom/wifi": {
     "format": "{text}",
