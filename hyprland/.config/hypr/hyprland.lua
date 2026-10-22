@@ -50,8 +50,9 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("systemctl --user start hyprpolkitagent")
 	hl.exec_cmd("waybar & hyprpaper & hypridle")
 
-	-- Clipboard
-	hl.exec_cmd("wl-paste --watch cliphist store")
+	-- Clipboard: history starts empty each login, like Windows. Delete the db rather than
+	-- `cliphist wipe`, which leaves the file at its full size
+	hl.exec_cmd("rm -f ${XDG_CACHE_HOME:-$HOME/.cache}/cliphist/db; wl-paste --watch cliphist -max-items 100 store")
 
 	-- Start up apps
 	hl.exec_cmd(browser, { workspace = "1 silent" })
@@ -253,8 +254,8 @@ for i = 1, 10 do
 	hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
 end
 
--- Open the clipboard
-hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("cliphist list | rofi -dmenu | cliphist decode | wl-copy"))
+-- Open the clipboard and paste the picked entry
+hl.bind("SUPER + V", hl.dsp.exec_cmd("~/.config/hypr/scripts/clipboard.sh"))
 
 hl.bind(mainMod .. " + C", hl.dsp.exec_cmd("rofi -show calc -modi calc -no-show-match -no-sort"))
 
