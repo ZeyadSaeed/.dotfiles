@@ -18,6 +18,8 @@ PanelWindow {
     default property alias content: body.data
 
     property int panelWidth: 360
+    // Screen x of the clicked bar button; the menu centers under it
+    property real anchorX: width
 
     anchors {
         top: true
@@ -48,10 +50,9 @@ PanelWindow {
 
         anchors {
             top: parent.top
-            right: parent.right
             topMargin: 2
-            rightMargin: 16
         }
+        x: Math.max(16, Math.min(panel.width - width - 16, panel.anchorX - width / 2))
         width: panel.panelWidth
         implicitHeight: layout.implicitHeight + 24
         radius: Theme.radius

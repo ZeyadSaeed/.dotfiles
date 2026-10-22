@@ -8,6 +8,7 @@
   "modules-right": [
     "custom/discord-volume",
     "pulseaudio",
+    "custom/vpn",
     "custom/wifi",
     "bluetooth",
     "group/system",
@@ -45,6 +46,13 @@
     "return-type": "json",
     "interval": 3,
     "on-click": "~/.config/waybar/scripts/qs-menu.sh wifi"
+  },
+  "custom/vpn": {
+    "format": "{text}",
+    "exec": "~/.config/waybar/scripts/vpn-status.sh",
+    "return-type": "json",
+    "interval": 3,
+    "on-click": "~/.config/waybar/scripts/qs-menu.sh vpn"
   },
   "bluetooth": {
     "format": "󰂯",

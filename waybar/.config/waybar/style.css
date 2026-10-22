@@ -44,6 +44,7 @@
 #custom-discord-volume,
 #custom-language,
 #custom-wifi,
+#custom-vpn,
 #bluetooth,
 #system,
 #custom-agents,
@@ -94,9 +95,22 @@
 }
 
 #custom-wifi,
+#custom-vpn,
 #bluetooth {
   margin-left: 0.5rem;
   color: #8caaee;
+}
+
+#custom-vpn.off {
+  color: #51576d;
+}
+
+#custom-vpn.connected {
+  color: #a6d189;
+}
+
+#custom-vpn.connecting {
+  color: #e5c890;
 }
 
 #custom-wifi.off,
