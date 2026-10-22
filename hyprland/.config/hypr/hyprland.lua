@@ -59,6 +59,8 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd(terminal, { workspace = "2 silent" })
 	hl.exec_cmd("discord", { workspace = "5 silent" })
 	hl.exec_cmd("spotify-launcher", { workspace = "6 silent" })
+	-- Speech to text; must be running for the F24 push-to-talk
+	hl.exec_cmd("handy --start-hidden")
 
 	-- Move workspace to the monitor once connected
 	hl.exec_cmd("handle_monitor_connect.sh")
@@ -246,6 +248,12 @@ hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. " + K", hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + J", hl.dsp.focus({ direction = "down" }))
 
+-- Handy push-to-talk: hold F24 (Fn + Right Shift on the Wooting) to record, release to transcribe.
+-- Handy only has a toggle signal, so press and release each send it once
+local handy_toggle = hl.dsp.exec_cmd("pkill -USR2 -x handy")
+hl.bind("F24", handy_toggle)
+hl.bind("F24", handy_toggle, { release = true })
+
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
 for i = 1, 10 do
@@ -259,10 +267,11 @@ hl.bind("SUPER + V", hl.dsp.exec_cmd("~/.config/hypr/scripts/clipboard.sh"))
 
 hl.bind(mainMod .. " + C", hl.dsp.exec_cmd("rofi -show calc -modi calc -no-show-match -no-sort"))
 
--- Switch keyboard layout (Fn + Right Shift is remapped to F24 on the Wooting)
+-- Switch keyboard layout
 -- Set every device to the main keyboard's next layout; "all next" flips each device on its own and they drift apart
-local switch_layout = hl.dsp.exec_cmd("hyprctl switchxkblayout all $((1 - $(hyprctl devices -j | jq '.keyboards[] | select(.main).active_layout_index')))")
-hl.bind("F24", switch_layout)
+local switch_layout = hl.dsp.exec_cmd(
+	"hyprctl switchxkblayout all $((1 - $(hyprctl devices -j | jq '.keyboards[] | select(.main).active_layout_index')))"
+)
 hl.bind("SUPER + Space", switch_layout)
 
 -- Special workspace (scratchpad)
