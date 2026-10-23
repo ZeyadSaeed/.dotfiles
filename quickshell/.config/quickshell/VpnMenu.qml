@@ -100,7 +100,7 @@ PopupPanel {
             highlighted: modelData.active
             busy: menu.pending === modelData.name
             trailing: busy ? "Connecting…" : menu.failed === modelData.name ? "Failed" : modelData.active ? "Connected" : ""
-            trailingColor: menu.failed === modelData.name ? Theme.red : modelData.active ? Theme.green : Theme.muted
+            trailingColor: busy ? Theme.yellow : menu.failed === modelData.name ? Theme.red : modelData.active ? Theme.green : Theme.muted
             onClicked: menu.activate(modelData)
         }
     }

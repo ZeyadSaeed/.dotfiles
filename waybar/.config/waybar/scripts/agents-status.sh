@@ -11,9 +11,8 @@ FILES=("$DIR"/*.json)
 jq -sc '
   [.[] | {name, limits: (.limits // [])}] as $agents
   | ([$agents[].limits[].percent] | max // 0) as $max
-  | ($max * 100 | round) as $pct
   | {
-      text: "󰚩 \($pct)%",
+      text: "󰚩",
       class: (if $max >= 0.9 then "critical" elif $max >= 0.7 then "warning" else "normal" end),
       tooltip: ([$agents[] | "\(.name): " + ([.limits[] | "\(.label) \(.percent * 100 | round)%"] | join(", "))] | join("\n"))
     }

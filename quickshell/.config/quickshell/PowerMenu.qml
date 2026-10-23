@@ -7,7 +7,7 @@ PopupPanel {
 
     readonly property var actions: [
         { key: "l", icon: "󰌾", label: "Lock", color: Theme.accent, cmd: "hyprlock" },
-        { key: "r", icon: "󰜉", label: "Restart", color: Theme.yellow, cmd: "systemctl reboot" },
+        { key: "r", icon: "󰜉", label: "Restart", color: Theme.text, cmd: "systemctl reboot" },
         { key: "s", icon: "󰐥", label: "Shutdown", color: Theme.red, cmd: "systemctl poweroff" }
     ]
 

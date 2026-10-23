@@ -1,6 +1,7 @@
 {
   "layer": "top",
   "position": "top",
+  "height": 30,
   "modules-left": [
         "hyprland/workspaces"
     ],
@@ -11,17 +12,11 @@
     "custom/vpn",
     "custom/wifi",
     "bluetooth",
-    "group/system",
     "custom/agents",
-    "custom/language",
     "custom/power"
   ],
   "hyprland/workspaces": {
-    "format": "{name}: {icon}",
-    "format-icons": {
-      "active": "",
-      "default": ""
-    }
+    "format": "{name}"
   },
   "tray": {
     "icon-size": 21,
@@ -34,11 +29,6 @@
     "interval": 1,
     "on-click": "qs ipc call menu close",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
-  },
-  "custom/language": {
-    "exec": "~/.config/waybar/scripts/language.sh",
-    "tooltip": false,
-    "on-click": "hyprctl switchxkblayout all $((1 - $(hyprctl devices -j | jq '.keyboards[] | select(.main).active_layout_index'))); qs ipc call menu close"
   },
   "custom/wifi": {
     "format": "{text}",
@@ -65,24 +55,6 @@
     "tooltip-format-enumerate-connected": "{device_alias}",
     "tooltip-format-enumerate-connected-battery": "{device_alias}  {device_battery_percentage}%",
     "on-click": "~/.config/waybar/scripts/qs-menu.sh bluetooth"
-  },
-  "group/system": {
-    "orientation": "horizontal",
-    "modules": ["cpu", "memory"]
-  },
-  "cpu": {
-    "interval": 2,
-    "format": "󰻠 {usage}%",
-    "states": { "warning": 70, "critical": 90 },
-    "tooltip-format": "CPU {usage}%  ·  load {load}",
-    "on-click": "qs ipc call menu close; ghostty -e htop"
-  },
-  "memory": {
-    "interval": 10,
-    "format": " {percentage}%",
-    "states": { "warning": 75, "critical": 90 },
-    "tooltip-format": "RAM  {used:0.1f}G / {total:0.1f}G\nSwap {swapUsed:0.1f}G / {swapTotal:0.1f}G",
-    "on-click": "qs ipc call menu close; ghostty -e htop"
   },
   "pulseaudio": {
     "scroll-step": 5,

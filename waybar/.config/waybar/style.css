@@ -1,173 +1,71 @@
+/* Omarchy-like, Tokyo Night: one solid strip, items are bright or dimmed (off/inactive) */
 * {
   font-family: JetbrainsMono Nerd Font;
-  font-size: 20px;
+  font-size: 18px;
   min-height: 0;
-  padding-right: 2px;
-  padding-bottom: 0px;
-}
-
-#waybar {
-  background: transparent;
-  color: #c6d0f5;
-  margin: 2px 2px;
-}
-
-#workspaces {
-  border-radius: 5px;
-  margin: 5px;
-  background: #101010;
-  margin-left: 1rem;
-}
-
-#workspaces button {
-  color: #babbf1;
-  border-radius: 5px;
-  padding: 0.4rem;
-}
-
-#workspaces button.active {
-  color: #99d1db;
-  border-radius: 5px;
-}
-
-#workspaces button:hover {
-  color: #85c1dc;
-  border-radius: 5px;
-}
-
-#custom-music,
-#tray,
-#backlight,
-#clock,
-#battery,
-#pulseaudio,
-#custom-discord-volume,
-#custom-language,
-#custom-wifi,
-#custom-vpn,
-#bluetooth,
-#system,
-#custom-agents,
-#custom-power {
-  background-color: #101010;
-  padding: 0.5rem 1rem;
-  margin: 5px 0;
-  border-radius: 5px;
-}
-
-#clock {
-  color: #8caaee;
-  border-radius: 5px;
-  margin-right: 1rem;
-}
-
-#backlight {
-  color: #e5c890;
-}
-
-#backlight,
-#battery {
+  border: none;
   border-radius: 0;
 }
 
-#custom-language {
+window#waybar {
+  background: #1a1b26; /* tokyo night */
+  color: #c0caf5;
+}
+
+#workspaces {
   margin-left: 0.5rem;
-  color: #babbf1;
 }
 
-#custom-language label {
-  font-size: 16px;
+/* Equal-width numbers; the active one sits in a soft pill */
+#workspaces button {
+  color: #565f89;
+  min-width: 1.6rem;
+  padding: 0 0.3rem;
+  margin: 4px 2px;
+  border-radius: 6px;
+  background: transparent;
+  box-shadow: none;
 }
 
+#workspaces button label {
+  font-size: 15px;
+}
+
+#workspaces button:hover {
+  color: #c0caf5;
+  background: transparent;
+}
+
+#workspaces button.active {
+  color: #c0caf5;
+  background: #292e42;
+}
+
+#clock,
 #pulseaudio,
-#custom-discord-volume {
-  color: #ea999c;
-  margin-left: 0.5rem;
-}
-
-#pulseaudio.muted {
-  color: #737994;
-}
-
-#system {
-  margin-left: 0.5rem;
-  padding: 0 0.4rem;
-}
-
-#custom-wifi,
+#custom-discord-volume,
 #custom-vpn,
-#bluetooth {
-  margin-left: 0.5rem;
-  color: #8caaee;
+#custom-wifi,
+#bluetooth,
+#custom-agents,
+#custom-power {
+  color: #c0caf5;
+  padding: 0 0.9rem;
 }
 
-#custom-vpn.off {
-  color: #51576d;
+#custom-power {
+  margin-right: 0.5rem;
 }
 
-#custom-vpn.connected {
-  color: #a6d189;
-}
-
-#custom-vpn.connecting {
-  color: #e5c890;
-}
-
+#pulseaudio.muted,
+#custom-vpn.off,
 #custom-wifi.off,
 #custom-wifi.disconnected,
 #bluetooth.off,
 #bluetooth.disabled {
-  color: #51576d;
+  color: #565f89;
 }
 
-#bluetooth.connected {
-  color: #99d1db;
+#custom-vpn.connecting {
+  color: #e0af68;
 }
-
-/* cpu + ram share one pill, colored by load */
-#cpu,
-#memory {
-  padding: 0 0.6rem;
-  color: #a6d189;
-}
-
-#cpu.warning,
-#memory.warning {
-  color: #e5c890;
-}
-
-#cpu.critical,
-#memory.critical {
-  color: #e78284;
-}
-
-#custom-agents {
-  margin-left: 0.5rem;
-  color: #ca9ee6;
-}
-
-#custom-agents.warning {
-  color: #e5c890;
-}
-
-#custom-agents.critical {
-  color: #e78284;
-}
-
-#custom-music {
-  color: #ca9ee6;
-  border-radius: 5px;
-}
-
-#custom-power {
-  margin-left: 0.5rem;
-  margin-right: 1rem;
-  color: #e78284;
-}
-
-#tray {
-  margin-right: 1rem;
-  margin-left: 1rem;
-  border-radius: 5px;
-}
-

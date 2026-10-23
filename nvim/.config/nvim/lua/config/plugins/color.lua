@@ -1,10 +1,10 @@
 return {
   {
-    "oxfist/night-owl.nvim",
+    "folke/tokyonight.nvim",
     priority = 1000,
     config = function()
-      require("night-owl").setup()
-      vim.cmd.colorscheme("night-owl")
+      require("tokyonight").setup({ style = "night" })
+      vim.cmd.colorscheme("tokyonight-night")
     end,
   },
 }

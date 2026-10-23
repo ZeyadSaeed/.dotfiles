@@ -34,10 +34,9 @@ PopupPanel {
         return mm + "m";
     }
 
+    // Bar and menus are monochrome; meters no longer color by usage
     function meterColor(p) {
-        if (p >= 0.9) return Theme.red;
-        if (p >= 0.7) return Theme.yellow;
-        return Theme.green;
+        return Theme.text;
     }
 
     onVisibleChanged: if (visible) {
