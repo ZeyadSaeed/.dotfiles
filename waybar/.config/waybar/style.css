@@ -1,6 +1,6 @@
 /* Omarchy-like, Tokyo Night: one solid strip, items are bright or dimmed (off/inactive) */
 * {
-  font-family: JetbrainsMono Nerd Font;
+  font-family: "JetBrainsMono Nerd Font Propo";
   font-size: 18px;
   min-height: 0;
   border: none;
@@ -51,6 +51,29 @@ window#waybar {
 #custom-power {
   color: #c0caf5;
   padding: 0 0.9rem;
+}
+
+/* Right-side buttons get the same soft pill as workspaces on hover */
+#pulseaudio,
+#custom-discord-volume,
+#custom-vpn,
+#custom-wifi,
+#bluetooth,
+#custom-agents,
+#custom-power {
+  margin: 4px 1px;
+  padding: 0 0.8rem;
+  border-radius: 6px;
+}
+
+#pulseaudio:hover,
+#custom-discord-volume:hover,
+#custom-vpn:hover,
+#custom-wifi:hover,
+#bluetooth:hover,
+#custom-agents:hover,
+#custom-power:hover {
+  background: #292e42;
 }
 
 #custom-power {
