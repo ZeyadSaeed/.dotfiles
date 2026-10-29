@@ -54,6 +54,9 @@ hl.on("hyprland.start", function()
 	-- `cliphist wipe`, which leaves the file at its full size
 	hl.exec_cmd("rm -f ${XDG_CACHE_HOME:-$HOME/.cache}/cliphist/db; wl-paste --watch cliphist -max-items 100 store")
 
+	-- Notifications: start Hokum at login so it owns the bus name before dunst gets D-Bus activated
+	hl.exec_cmd("hokum service")
+
 	-- Start up apps
 	hl.exec_cmd(browser, { workspace = "1 silent" })
 	hl.exec_cmd(terminal, { workspace = "2 silent" })

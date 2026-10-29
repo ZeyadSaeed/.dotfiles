@@ -1,0 +1,16 @@
+behaviour {
+    appearance "dark"
+    check-for-updates #false  // installed from the AUR (hokum-bin); yay updates it
+}
+
+// Tokyo Night, matching waybar, quickshell menus and ghostty
+tokens "dark" {
+    fill "#1a1b26"
+    border 1 "#292e42"
+    text "#c0caf5"
+    muted "#a9b1d6"
+    faint "#565f89"
+    accent "#7aa2f7"
+    radius 10
+    shadow "soft"
+}
